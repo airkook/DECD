@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd 
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+	http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd ">
+ 
+	<context:annotation-config />
+	<context:component-scan base-package="com.fitech.papp.decd"></context:component-scan>
+	<!-- oracle 数据库连接  -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@192.168.0.205:1521:orcl" /> 
+		<property name="username" value="decd" />
+		<property name="password" value="123456" /> 
+	</bean>
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<!-- oracle -->
+				<prop key="hibernate.dialect">org.hibernate.dialect.OracleDialect</prop>
+				<!-- 是否将Hibernate发送给数据库的sql显示出来 -->
+				<prop key="hibernate.show_sql">true</prop><!--
+				<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+			--></props>
+		</property>
+		<property name="mappingDirectoryLocations">
+			<list>
+				<value>classpath:com/fitech/papp/decd/model/pojo/</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 定义事务管理器（声明式的事务） -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>
+		<aop:pointcut id="interceptorPointCuts"
+			expression="(execution(* com.fitech.papp.decd..*.*ServiceImpl.*(..))) and (!@within(com.fitech.framework.core.NoneTransaction.NoneTransaction))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="interceptorPointCuts" />
+	</aop:config>
+	
+	
+	<bean id="authWebService" class="com.fitech.papp.webservice.service.impl.AuthServiceImpl"></bean>
+	<bean id="userWebService" class="com.fitech.papp.webservice.service.impl.UserServiceImpl"></bean>
+	
+	<!-- 用以实现spring与axis相结合 -->
+	<!-- 另外WEBSERVICE实现都在khfx.webserice包下面 -->
+	<bean id="applicationContext" class="org.apache.axis2.extensions.spring.receivers.ApplicationContextHolder" />
+	
+</beans>

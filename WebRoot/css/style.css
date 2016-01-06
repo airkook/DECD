@@ -1,0 +1,17 @@
+@charset "utf-8";
+/* CSS Document */
+*{ margin:0; padding:0; font-size:9pt; font-family:Verdana;}
+body{overflow:hidden;background:#d6dee0 url(../images/login_bg1.jpg) repeat-x left top;}
+ul,li{display:block; margin:0; padding:0; list-style:none;}
+.login{width:100%;}
+.userlogin{width:854px;position:absolute;margin-left:-427px; margin-right:-427px;left:50%;top:0;}
+ .userlogin1{ background:url(../images/login_bg2.jpg) no-repeat; height:166px;}
+ .userlogin2{ background:url(../images/login_bg3.jpg) no-repeat; height:410px; position:relative;}
+   .logo{ background:url(../images/ad_logo.png) no-repeat; top:30px; left:250px;position:absolute; width:346px; height:50px}
+   .loginbar{ display:block; height:180px; position:absolute;top:110px; left:250px;}
+    .loginbar ul{ width:370px;}
+	 .loginbar li{ margin-bottom:25px;_margin-bottom:23px;}
+	 .loginbar ul li label{ float:left; width:66px; height:30px; line-height:32px;font-size:14px; color:#565656; }
+	 .user{width:260px;}
+	 .logininput{ height:30px; line-height:30px;border:1px solid #c9c9c9;background-color:#eee; width:260px; font-size:14px;}
+	 .loginbtn{ width:123px; height:40px; background:url(../images/login_btn.png) no-repeat;cursor:pointer; border:0; margin-left:112px}

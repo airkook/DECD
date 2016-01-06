@@ -1,0 +1,64 @@
+@charset "utf-8";
+/* CSS Document */
+.menu_hy span {color:#0147e7;}
+
+.header{
+	height:90px;
+	background:url(skinimg/blue/admin_bg1.jpg) repeat-x 0 -20px;
+	position:relative;
+	left:0;
+	top:0;
+}
+
+/*导航条*/
+.navbar {
+	float:right;
+	width:950px;
+	height:36px;
+	margin:5px 0 0 0;
+}
+.navbar ul {
+	height:36px;
+}
+.navbar li{
+	width:71px;
+	height:36px;
+	float:left;
+	text-align:center;
+	font-size:13px;
+	font-weight:bold;
+	line-height:36px;
+	margin-right:2px;
+
+}
+.navbar li a {
+	width:71px;
+	height:36px;
+	color:#767676;
+}
+.navbar li a:hover{
+	background:url(skinimg/blue/admin_bg2.gif) no-repeat left top;
+	width:71px;
+	height:36px;
+	display:block;
+	text-decoration:none;
+	color:#fff;
+}
+.navbar li.selected{
+	background:url(skinimg/blue/admin_bg2.gif) no-repeat left top;
+	width:71px;
+	height:36px;
+	display:block;
+	color:#fff;
+}
+.navbar li.selected a{	
+	color:#fff;
+	}
+	
+	
+/* 树形菜单开始 */ 
+
+.l1{background:#3e72c3;}
+
+/*tab样式1*/
+.tab_content th{background:#f5f5f5 url(skinimg/blue/tab_bg2.jpg) repeat-x;}

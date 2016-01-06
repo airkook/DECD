@@ -1,0 +1,31 @@
+@charset "utf-8";
+/* CSS Document */
+body { font-family:"宋体"; font-size: 12px; line-height: 1.5em; color:#7FB0C8; padding:0; margin:0; background:#eee; }
+ul,ol,li,dl,dt,dd { margin:0; padding:0; list-style-type:none;}
+h1,h2,h3,form,input,iframe,span { margin:0; padding:0;} 
+a{color:#7FB0C8;}
+a:link,a:visited{color:#7FB0C8; text-decoration:none}
+a:hover {color:#fff;text-decoration:none}
+.white {color:#fff;}
+.white a:link {color: #fff; text-decoration: none;}
+.white a:visited {color: #fff; text-decoration: none;}
+.white a:hover {color: #73E1F5; text-decoration: none;}
+
+/* 树形菜单开始 */
+.close { float:right; clear:right; font-size:12px; font-weight:normal; cursor:pointer; padding-right:10px;}
+.title { font-size:14px; color:#fff; margin-bottom:10px; padding-left:5px; width:212px;}
+.left_menu{ width:212px; overflow-x:hidden;margin-bottom:10px;}
+
+.l1 {background:#6ac000 ;font-size:14px; color:#FFF;padding:5px 0 0 0; text-align:center;height:28px; line-height:28px;margin-bottom:5px; cursor:pointer;}
+ .l1 span{ background:url(../images/icon1.gif) no-repeat left 4px; padding-left:15px}
+.slist {margin:5px 0 15px 0; display:none;}
+.l2,.l4,.l5{ padding:0 0 0 40px; font-weight:bold;font-size:12px; color:#444;background:url(../images/icon4.gif) no-repeat 35px 10px; width:145px; list-style:none}
+
+.l2 a,.l4 a,.l5 a{padding:10px 0 0 15px; width:176px; height:21px; display:block;color:#444; } 
+.l2 a:hover,.l4 a:hover,.l5 a:hover {color:#1578c1;}
+
+.sslist { background:#f8f8f8; width:175px; max-height:460px; overflow:auto;overflow-x:hidden;margin:5px 0 5px 40px; display:none;}
+.l3 a { padding:6px 0 0 5px; width:175px; height:20px; display:block; color:#444;} 
+.l3 a:hover { color:#1578c1; font-weight:bold;}
+
+.over_y{ max-height:460px; overflow:auto;overflow-x:hidden;}

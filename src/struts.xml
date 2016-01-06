@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.objectFactory" value="spring" />
+	<package name="notlogin" extends="struts-default" namespace="/">
+
+		<action name="login" class="com.fitech.papp.decd.action.LoginAction" >
+			<result name="success">/main.jsp</result>
+			<result name="input">/login.jsp</result>
+			<result name="error">/logError.jsp</result>
+		</action>
+		<action name="logout" class="logoutAction">
+			<result name="success">/login.jsp</result>
+		</action>
+		
+	</package>
+	<include file="struts-decd.xml" />
+	<constant name="struts.devMode" value="false" />
+    <constant name="struts.i18n.reload" value="false" />
+    <constant name="struts.configuration.xml.reload" value="false" />
+</struts>    

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.objectFactory" value="spring" />
+	<package name="decd" extends="struts-default,json-default"
+		namespace="/">
+		<interceptors>
+			<interceptor name="authority"
+				class="com.fitech.papp.decd.interceptor.AdminLoginInterceptor" />
+
+			<!--定义一个包含权限检查的拦截器栈 -->
+			<interceptor-stack name="fitDefault">
+				<!--配置内建默认拦截器 -->
+				<interceptor-ref name="defaultStack" />
+				<!--配置自定义的拦截器 -->
+				<interceptor-ref name="authority" />
+			</interceptor-stack>
+
+		</interceptors>
+		<default-interceptor-ref name="fitDefault" />
+		<global-results>
+			<result name="logout">/logout.jsp</result>
+		</global-results>
+		 		
+		<!-- struts2的配置 -->	
+		<!-- 角色管理  -->
+		<action name="roleManager_*" class="com.fitech.papp.decd.action.RoleManagerAction"  method="{1}">
+		 	<result name="success">/xtgl/jsgl/roleManager.jsp</result>
+		 	<result name="edit">/xtgl/jsgl/roleEdit.jsp</result>
+		 	<result name="roleMenu">/xtgl/jsgl/roleMenu.jsp</result>
+		</action>
+		<!-- 用户管理信息  -->
+		<action name="userManager_*" class="com.fitech.papp.decd.action.UserInfoManagerAction" method="{1}">
+			<result name="init">/xtgl/yhgl/yhgl.jsp</result>
+			<result name="edit">/xtgl/yhgl/edit.jsp</result>
+			<result name="update" type="chain">userManager_init</result>
+			<result name="toRole">/xtgl/yhgl/roleEdit.jsp</result>
+			<result name="updateRoleInfo" type="chain">userManager_init</result>
+			<result name="userRoleData">/xtgl/yhgl/userRoleData.jsp</result>
+			<result name="toUserInit" type="chain">userManager_init</result>
+		</action>
+		<!-- 大额存单数据维护  -->
+		<action name="cdsManager_*" class="com.fitech.papp.decd.action.CDSManageAction"  method="{1}">
+		 	<result name="success">/sjgl/sjwh/sjwhMain.jsp</result>
+		 	<result name="detail">/sjgl/sjwh/sjwhDetail.jsp</result>
+		</action>
+		<!-- 数据监控  -->
+		<action name="dateMonitor_*" class="com.fitech.papp.decd.action.DataMonitorAction" method="{1}">
+			<result name="success">/sjjk/sjjk/sjjk.jsp</result>
+			
+		</action>
+		
+		<!-- 数据审核  add by wupengzheng 2015-12-07 start-->
+		<action name="dataAudit_*" class="com.fitech.papp.decd.action.DataAuditAction" method="{1}">
+			<result name="init">/sjgl/sjsh/sjshMain.jsp</result>
+			<result name="auditPass" type="chain">dataAudit_init</result>
+			<result name="auditNoPass" type="chain">dataAudit_init</result>
+		</action>
+		
+		<!-- 报送记录查看  -->
+		<action name="submitRecords_*" class="com.fitech.papp.decd.action.SubmitRecordsAction" method="{1}">
+			<result name="init">/sjbs/bsjlck/bsjlck.jsp</result>
+		</action>
+		<!-- 反馈文件查看  -->
+		<action name="fkwjck_*" class="com.fitech.papp.decd.action.FkwjckAction"  method="{1}">
+			<!-- 中国外汇交易中心  -->
+		 	<!-- 上海清算所  -->
+		 	<result name="success">/fkwjck/index.jsp</result>
+		 	</action>
+	  
+<!-- 数据报送  -->
+	     <!-- 数据上报 -->
+	   <action name="dataReport_*" class="com.fitech.papp.decd.action.DataReportAction"  method="{1}">
+			<result name="success">/sjbs/sjsb/sjsb.jsp</result>
+		
+		</action>
+	   
+		<!-- 报送配置  -->
+		<action name="submitConfig_*" class="com.fitech.papp.decd.action.SubmitConfigAction" method="{1}">
+			<result name="init">/bspz/bspz/bspz.jsp</result>
+		</action>
+		
+		<!--自动报送管理 add by wupengzheng 2015-12-10 start  -->
+		<action name="autoReportManage_*" class = "com.fitech.papp.decd.action.AutoReportManageAction" method="{1}">
+		    <result name="success">/bspz/zdbsgl/zdbsgl.jsp</result>
+		</action>
+		
+		<action name="validateInfoManager_*" class = "com.fitech.papp.decd.action.ValidateInfoManagerAction" method="{1}">
+		    <result name="success">/jysz/jyxxck/main.jsp</result>
+		</action>
+	</package>
+
+</struts>    
